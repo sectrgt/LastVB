@@ -286,4 +286,10 @@ Private Sub mnuRAM_Click(Index As Integer)
 intCategory = 5
 Call imgDisplay
 End Sub
+Sub AddItem(ByVal strItemName As String, ByVal intcost As Integer)
+lstItems.additem ("Item1 : " & strItemName & " "&
+udtiteminfo.itemquatity -1
+End Sub
+Sub EndReceipt(ByVal intnumitems As Integer, ByVal inttotal As Integer)
 
+End Sub
