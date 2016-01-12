@@ -1,3 +1,4 @@
+
 Option Explicit
 Private Type itemInfo
     itemName As String
@@ -7,7 +8,6 @@ Private Type itemInfo
 End Type
 Private udtItems(14) As itemInfo
 Private intCategory As Integer
-
 Private Sub cmdBack_Click()
 imgBLT.Visible = True
 lblBLT.Visible = True
@@ -27,7 +27,9 @@ End Sub
 Private Sub cmdCancel_Click()
 Unload Me
 End Sub
-
+Private Sub cmdCheckout_Click()
+Call itemCheckout
+End Sub
 Private Sub cmdSearch_Click()
 Dim intX As Integer
 Dim blnFound As Boolean
@@ -156,6 +158,7 @@ cmdCancel.Caption = "Exit"
 optName.Caption = "Name"
 optQTN.Caption = "Quantity"
 optCost.Caption = "Cost"
+cmdCheckout.Caption = "Checkout"
 lblSearchTitle.Caption = "Enter the name, cost, or quantity of the item to search"
 cmdSearch.Caption = "Search"
 txtSearch.Text = ""
@@ -209,87 +212,76 @@ ElseIf intCategory = 5 Then
 End If
 End Sub
 Private Sub imgTLT_Click()
+Dim intIndex As Integer
 If intCategory = 1 Then
-    'imgTLT.Picture = LoadPicture(udtItems(0).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(0).itemName & vbCrLf & "Cost: $" & udtItems(0).itemCost & vbCrLf & "Quantity: " & udtItems(0).itemQuantity
 ElseIf intCategory = 2 Then
-    'imgTLT.Picture = LoadPicture(udtItems(3).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(3).itemName & vbCrLf & "Cost: $" & udtItems(3).itemCost & vbCrLf & "Quantity: " & udtItems(3).itemQuantity
 ElseIf intCategory = 3 Then
-    'imgTLT.Picture = LoadPicture(udtItems(6).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(6).itemName & vbCrLf & "Cost: $" & udtItems(6).itemCost & vbCrLf & "Quantity: " & udtItems(6).itemQuantity
 ElseIf intCategory = 4 Then
-   'imgTLT.Picture = LoadPicture(udtItems(9).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(9).itemName & vbCrLf & "Cost: $" & udtItems(9).itemCost & vbCrLf & "Quantity: " & udtItems(9).itemQuantity
 ElseIf intCategory = 5 Then
-    'imgTLT.Picture = LoadPicture(udtItems(12).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(12).itemName & vbCrLf & "Cost: $" & udtItems(12).itemCost & vbCrLf & "Quantity: " & udtItems(12).itemQuantity
 End If
 End Sub
 Private Sub imgTMT_Click()
 If intCategory = 1 Then
-    'imgTMT.Picture = LoadPicture(udtItems(1).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(1).itemName & vbCrLf & "Cost: $" & udtItems(1).itemCost & vbCrLf & "Quantity: " & udtItems(1).itemQuantity
 ElseIf intCategory = 2 Then
-    'imgTMT.Picture = LoadPicture(udtItems(4).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(4).itemName & vbCrLf & "Cost: $" & udtItems(4).itemCost & vbCrLf & "Quantity: " & udtItems(4).itemQuantity
 ElseIf intCategory = 3 Then
-    'imgTMT.Picture = LoadPicture(udtItems(7).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(7).itemName & vbCrLf & "Cost: $" & udtItems(7).itemCost & vbCrLf & "Quantity: " & udtItems(7).itemQuantity
 ElseIf intCategory = 4 Then
-    'imgTMT.Picture = LoadPicture(udtItems(10).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(10).itemName & vbCrLf & "Cost: $" & udtItems(10).itemCost & vbCrLf & "Quantity: " & udtItems(10).itemQuantity
 ElseIf intCategory = 5 Then
-    'imgTMT.Picture = LoadPicture(udtItems(13).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(13).itemName & vbCrLf & "Cost: $" & udtItems(13).itemCost & vbCrLf & "Quantity: " & udtItems(13).itemQuantity
 End If
 End Sub
 Private Sub imgTRT_Click()
+Dim intIndex As Integer
 If intCategory = 1 Then
-    'imgTRT.Picture = LoadPicture(udtItems(2).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(2).itemName & vbCrLf & "Cost: $" & udtItems(2).itemCost & vbCrLf & "Quantity: " & udtItems(2).itemQuantity
 ElseIf intCategory = 2 Then
-    'imgTRT.Picture = LoadPicture(udtItems(5).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(5).itemName & vbCrLf & "Cost: $" & udtItems(5).itemCost & vbCrLf & "Quantity: " & udtItems(5).itemQuantity
 ElseIf intCategory = 3 Then
-    'imgTRT.Picture = LoadPicture(udtItems(8).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(8).itemName & vbCrLf & "Cost: $" & udtItems(8).itemCost & vbCrLf & "Quantity: " & udtItems(8).itemQuantity
 ElseIf intCategory = 4 Then
-    'imgTRT.Picture = LoadPicture(udtItems(11).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(11).itemName & vbCrLf & "Cost: $" & udtItems(11).itemCost & vbCrLf & "Quantity: " & udtItems(11).itemQuantity
 ElseIf intCategory = 5 Then
-    'imgTRT.Picture = LoadPicture(udtItems(14).itemPicturePath)
     lblInfo.Caption = "Name: " & udtItems(14).itemName & vbCrLf & "Cost: $" & udtItems(14).itemCost & vbCrLf & "Quantity: " & udtItems(14).itemQuantity
 End If
+End Sub
+Sub itemCheckout()
+Static intCounter As Integer
+Dim intIndex As Integer
+Dim dblCost As Double
+udtItems(intIndex).itemCost = dblCost
+Dim dblTotalCost As Double
+Const dblTax As Double = 0.08375
+intCounter = intCounter + 1
+lblCounter.Caption = "Customer Number: " & intCounter
+lstList.Clear
+dblTotalCost = dblCost + dblCost * dblTax
+MsgBox "Sales Tax: " & dblTax & vbCrLf & "Total Cost: " & dblTotalCost, , "Receipt"
 End Sub
 Private Sub mnuCPU_Click(Index As Integer)
 intCategory = 1
 Call imgDisplay
 End Sub
-
 Private Sub mnuHDD_Click(Index As Integer)
 intCategory = 4
 Call imgDisplay
 End Sub
-
 Private Sub mnumobo_Click(Index As Integer)
 intCategory = 2
 Call imgDisplay
 End Sub
-
 Private Sub mnupsu_Click(Index As Integer)
 intCategory = 3
 Call imgDisplay
 End Sub
-
 Private Sub mnuRAM_Click(Index As Integer)
 intCategory = 5
 Call imgDisplay
-End Sub
-Sub AddItem(ByVal strItemName As String, ByVal intcost As Integer)
-lstItems.additem ("Item1 : " & strItemName & " "&
-udtiteminfo.itemquatity -1
-End Sub
-Sub EndReceipt(ByVal intnumitems As Integer, ByVal inttotal As Integer)
-
 End Sub
