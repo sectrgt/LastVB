@@ -1,18 +1,63 @@
 VERSION 5.00
 Begin VB.Form frmStore 
-   Caption         =   "Form1"
+   Caption         =   "VERSION 5.00"
    ClientHeight    =   12120
    ClientLeft      =   -2265
    ClientTop       =   705
    ClientWidth     =   15690
    LinkTopic       =   "Form1"
-   ScaleHeight     =   12195
-   ScaleWidth      =   22920
+   ScaleHeight     =   12120
+   ScaleWidth      =   15690
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   4
+      Left            =   3840
+      TabIndex        =   24
+      Top             =   9120
+      Width           =   3375
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   3
+      Left            =   120
+      TabIndex        =   23
+      Top             =   9120
+      Width           =   3375
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   2
+      Left            =   7560
+      TabIndex        =   22
+      Top             =   4800
+      Width           =   3495
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   1
+      Left            =   3960
+      TabIndex        =   21
+      Top             =   4800
+      Width           =   3375
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   0
+      Left            =   120
+      TabIndex        =   20
+      Top             =   4800
+      Width           =   3495
+   End
    Begin VB.CommandButton cmdBack 
       Caption         =   "Command7"
       Height          =   735
       Left            =   3960
-      TabIndex        =   20
+      TabIndex        =   18
       Top             =   10080
       Width           =   3375
    End
@@ -20,14 +65,14 @@ Begin VB.Form frmStore
       Caption         =   "Frame1"
       Height          =   855
       Left            =   7920
-      TabIndex        =   16
+      TabIndex        =   14
       Top             =   8640
       Width           =   4095
       Begin VB.OptionButton optQTN 
          Caption         =   "Option1"
          Height          =   495
          Left            =   2760
-         TabIndex        =   19
+         TabIndex        =   17
          Top             =   240
          Width           =   1095
       End
@@ -35,7 +80,7 @@ Begin VB.Form frmStore
          Caption         =   "Option1"
          Height          =   495
          Left            =   1440
-         TabIndex        =   18
+         TabIndex        =   16
          Top             =   240
          Width           =   1095
       End
@@ -43,7 +88,7 @@ Begin VB.Form frmStore
          Caption         =   "Option1"
          Height          =   495
          Left            =   120
-         TabIndex        =   17
+         TabIndex        =   15
          Top             =   240
          Width           =   1095
       End
@@ -52,14 +97,14 @@ Begin VB.Form frmStore
       Caption         =   "Command8"
       Height          =   615
       Left            =   7920
-      TabIndex        =   15
+      TabIndex        =   13
       Top             =   9720
       Width           =   4095
    End
    Begin VB.TextBox txtSearch 
       Height          =   1335
       Left            =   7920
-      TabIndex        =   14
+      TabIndex        =   12
       Text            =   "Text1"
       Top             =   6960
       Width           =   4095
@@ -68,7 +113,7 @@ Begin VB.Form frmStore
       Caption         =   "Command7"
       Height          =   735
       Left            =   12480
-      TabIndex        =   12
+      TabIndex        =   10
       Top             =   7200
       Width           =   3975
    End
@@ -76,14 +121,14 @@ Begin VB.Form frmStore
       Caption         =   "Command6"
       Height          =   1095
       Left            =   14640
-      TabIndex        =   10
+      TabIndex        =   8
       Top             =   9480
       Width           =   2535
    End
    Begin VB.ListBox lstList 
       Height          =   10590
       Left            =   17280
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   120
       Width           =   3975
    End
@@ -91,31 +136,15 @@ Begin VB.Form frmStore
       Caption         =   "Command7"
       Height          =   735
       Left            =   120
-      TabIndex        =   8
+      TabIndex        =   6
       Top             =   10080
       Width           =   3375
-   End
-   Begin VB.CommandButton cmdBRT 
-      Caption         =   "Command1"
-      Height          =   615
-      Left            =   3840
-      TabIndex        =   7
-      Top             =   9240
-      Width           =   3495
-   End
-   Begin VB.CommandButton cmdBLT 
-      Caption         =   "Command1"
-      Height          =   615
-      Left            =   120
-      TabIndex        =   4
-      Top             =   9240
-      Width           =   3495
    End
    Begin VB.Label lblCounter 
       Caption         =   "Label1"
       Height          =   735
       Left            =   8160
-      TabIndex        =   21
+      TabIndex        =   19
       Top             =   10920
       Width           =   2655
    End
@@ -123,7 +152,7 @@ Begin VB.Form frmStore
       Caption         =   "Label7"
       Height          =   735
       Left            =   7920
-      TabIndex        =   13
+      TabIndex        =   11
       Top             =   5880
       Width           =   4095
    End
@@ -131,7 +160,7 @@ Begin VB.Form frmStore
       Caption         =   "Label6"
       Height          =   2655
       Left            =   12480
-      TabIndex        =   11
+      TabIndex        =   9
       Top             =   4320
       Width           =   3975
    End
@@ -151,7 +180,7 @@ Begin VB.Form frmStore
       Caption         =   "Label1"
       Height          =   615
       Left            =   3840
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   5760
       Width           =   3495
    End
@@ -165,7 +194,7 @@ Begin VB.Form frmStore
       Caption         =   "Label1"
       Height          =   615
       Left            =   3840
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   1440
       Width           =   3495
    End
@@ -255,6 +284,7 @@ Private Type itemInfo
 End Type
 Private udtItems(14) As itemInfo
 Private intCategory As Integer
+Private Multiplier As Integer
 Private Sub cmdBack_Click()
 imgBLT.Visible = True
 lblBLT.Visible = True
@@ -273,6 +303,10 @@ Call imgDisplay
 End Sub
 Private Sub cmdCancel_Click()
 Unload Me
+End Sub
+Private Sub cmdCategory_Click(Index As Integer)
+MsgBox intCategory
+MsgBox udtItems(Index * intCategory).itemName
 End Sub
 Private Sub cmdCheckout_Click()
 Call itemCheckout
@@ -513,7 +547,7 @@ dblTotalCost = dblCost + dblCost * dblTax
 MsgBox "Sales Tax: " & dblTax & vbCrLf & "Total Cost: " & dblTotalCost, , "Receipt"
 End Sub
 Private Sub mnuCPU_Click(Index As Integer)
-intCategory = 1
+intCategory = 1 'Check category
 Call imgDisplay
 End Sub
 Private Sub mnuHDD_Click(Index As Integer)
@@ -531,4 +565,7 @@ End Sub
 Private Sub mnuRAM_Click(Index As Integer)
 intCategory = 5
 Call imgDisplay
+End Sub
+Sub Item()
+
 End Sub
