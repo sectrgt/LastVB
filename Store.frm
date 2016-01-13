@@ -1,4 +1,3 @@
-
 Option Explicit
 Private Type itemInfo
     itemName As String
