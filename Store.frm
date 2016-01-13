@@ -1,3 +1,272 @@
+VERSION 5.00
+Begin VB.Form frmStore 
+   Caption         =   "VERSION 5.00"
+   ClientHeight    =   12120
+   ClientLeft      =   -2265
+   ClientTop       =   705
+   ClientWidth     =   12840
+   LinkTopic       =   "Form1"
+   ScaleHeight     =   12120
+   ScaleWidth      =   12840
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   4
+      Left            =   3840
+      TabIndex        =   23
+      Top             =   9120
+      Width           =   3375
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   3
+      Left            =   120
+      TabIndex        =   22
+      Top             =   9120
+      Width           =   3375
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   2
+      Left            =   7560
+      TabIndex        =   21
+      Top             =   4800
+      Width           =   3495
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   1
+      Left            =   3960
+      TabIndex        =   20
+      Top             =   4800
+      Width           =   3375
+   End
+   Begin VB.CommandButton cmdCategory 
+      Caption         =   "Command1"
+      Height          =   615
+      Index           =   0
+      Left            =   120
+      TabIndex        =   19
+      Top             =   4800
+      Width           =   3495
+   End
+   Begin VB.CommandButton cmdBack 
+      Caption         =   "Command7"
+      Height          =   735
+      Left            =   3960
+      TabIndex        =   17
+      Top             =   10080
+      Width           =   3375
+   End
+   Begin VB.Frame fraOptions 
+      Caption         =   "Frame1"
+      Height          =   855
+      Left            =   7920
+      TabIndex        =   13
+      Top             =   8640
+      Width           =   4095
+      Begin VB.OptionButton optQTN 
+         Caption         =   "Option1"
+         Height          =   495
+         Left            =   2760
+         TabIndex        =   16
+         Top             =   240
+         Width           =   1095
+      End
+      Begin VB.OptionButton optCost 
+         Caption         =   "Option1"
+         Height          =   495
+         Left            =   1440
+         TabIndex        =   15
+         Top             =   240
+         Width           =   1095
+      End
+      Begin VB.OptionButton optName 
+         Caption         =   "Option1"
+         Height          =   495
+         Left            =   120
+         TabIndex        =   14
+         Top             =   240
+         Width           =   1095
+      End
+   End
+   Begin VB.CommandButton cmdSearch 
+      Caption         =   "Command8"
+      Height          =   615
+      Left            =   7920
+      TabIndex        =   12
+      Top             =   9720
+      Width           =   4095
+   End
+   Begin VB.CommandButton cmdCheckout 
+      Caption         =   "Command7"
+      Height          =   735
+      Left            =   12480
+      TabIndex        =   10
+      Top             =   7200
+      Width           =   3975
+   End
+   Begin VB.CommandButton Command6 
+      Caption         =   "Command6"
+      Height          =   1095
+      Left            =   14640
+      TabIndex        =   8
+      Top             =   9480
+      Width           =   2535
+   End
+   Begin VB.ListBox lstList 
+      Height          =   10590
+      Left            =   17280
+      TabIndex        =   7
+      Top             =   120
+      Width           =   3975
+   End
+   Begin VB.CommandButton cmdCancel 
+      Caption         =   "Command7"
+      Height          =   735
+      Left            =   120
+      TabIndex        =   6
+      Top             =   10080
+      Width           =   3375
+   End
+   Begin VB.Label lblCounter 
+      Caption         =   "Label1"
+      Height          =   735
+      Left            =   8160
+      TabIndex        =   18
+      Top             =   10920
+      Width           =   2655
+   End
+   Begin VB.Label lblSearchTitle 
+      Caption         =   "Label7"
+      Height          =   735
+      Left            =   7920
+      TabIndex        =   11
+      Top             =   7680
+      Width           =   4095
+   End
+   Begin VB.Label lblInfo 
+      Caption         =   "Label6"
+      Height          =   2655
+      Left            =   12480
+      TabIndex        =   9
+      Top             =   4320
+      Width           =   3975
+   End
+   Begin VB.Image imgCheckout 
+      Height          =   2535
+      Left            =   12480
+      Top             =   1560
+      Width           =   3975
+   End
+   Begin VB.Image imgBRT 
+      Height          =   2415
+      Left            =   3840
+      Top             =   6600
+      Width           =   3495
+   End
+   Begin VB.Label lblBRT 
+      Caption         =   "Label1"
+      Height          =   615
+      Left            =   3840
+      TabIndex        =   5
+      Top             =   5760
+      Width           =   3495
+   End
+   Begin VB.Image imgTMT 
+      Height          =   2415
+      Left            =   3840
+      Top             =   2280
+      Width           =   3495
+   End
+   Begin VB.Label lblTMT 
+      Caption         =   "Label1"
+      Height          =   615
+      Left            =   3840
+      TabIndex        =   4
+      Top             =   1440
+      Width           =   3495
+   End
+   Begin VB.Image imgBLT 
+      Height          =   2415
+      Left            =   120
+      Top             =   6600
+      Width           =   3495
+   End
+   Begin VB.Label lblBLT 
+      Caption         =   "Label1"
+      Height          =   615
+      Left            =   120
+      TabIndex        =   3
+      Top             =   5760
+      Width           =   3495
+   End
+   Begin VB.Image imgTRT 
+      Height          =   2415
+      Left            =   7560
+      Top             =   2280
+      Width           =   3495
+   End
+   Begin VB.Label lblRMT 
+      Caption         =   "Label1"
+      Height          =   615
+      Left            =   7560
+      TabIndex        =   2
+      Top             =   1440
+      Width           =   3495
+   End
+   Begin VB.Image imgTLT 
+      Height          =   2415
+      Left            =   120
+      Top             =   2280
+      Width           =   3495
+   End
+   Begin VB.Label lblTLT 
+      Caption         =   "Label1"
+      Height          =   615
+      Left            =   120
+      TabIndex        =   1
+      Top             =   1440
+      Width           =   3495
+   End
+   Begin VB.Label lbltitle 
+      Caption         =   "Label1"
+      Height          =   1095
+      Left            =   120
+      TabIndex        =   0
+      Top             =   120
+      Width           =   16815
+   End
+   Begin VB.Menu mnupsu 
+      Caption         =   "Power Supplies"
+      Index           =   5
+   End
+   Begin VB.Menu mnumobo 
+      Caption         =   "Motherboards"
+      Index           =   4
+   End
+   Begin VB.Menu mnuHDD 
+      Caption         =   "Hard Drives"
+      Index           =   3
+   End
+   Begin VB.Menu mnuRAM 
+      Caption         =   "RAM"
+      Index           =   2
+   End
+   Begin VB.Menu mnuCPU 
+      Caption         =   "CPU's"
+      Index           =   1
+   End
+End
+Attribute VB_Name = "frmStore"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+
 Option Explicit
 Private Type itemInfo
     itemName As String
@@ -163,7 +432,6 @@ optCost.Caption = "Cost"
 cmdCheckout.Caption = "Checkout"
 lblSearchTitle.Caption = "Enter the name, cost, or quantity of the item to search"
 cmdSearch.Caption = "Search"
-txtSearch.Text = ""
 lblTLT.Alignment = 2
 lblTMT.Alignment = 2
 lblRMT.Alignment = 2
