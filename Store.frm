@@ -342,7 +342,7 @@ Sub itemInfo()
 
 'Motherboards
 
-udtItems(3).itemName = "Gigabyte LGA1151"
+udtItems().itemName = "Gigabyte LGA1151"
 udtItems(3).itemCost = 56
 udtItems(3).itemQuantity = 30
 udtItems(3).itemPicturePath = "Gigabyte.jpg"
@@ -541,7 +541,8 @@ End Sub
 Private Sub cmdCategory_Click(Index As Integer)
 
 Index = (Index * intCategory) + 1
-MsgBox Index
+lblInfo.Caption = "Name: " & udtItems(Index).itemName & vbCrLf & "Cost: $" & udtItems(Index).itemCost & vbCrLf & "Quantity: " & udtItems(Index).itemQuantity
+'MsgBox Index
 'MsgBox udtItems(Index).itemName
 End Sub
 Private Sub mnuCPU_Click(Index As Integer)
@@ -564,4 +565,3 @@ Private Sub mnuRAM_Click(Index As Integer)
 intCategory = 4
 Call imgDisplay
 End Sub
-
