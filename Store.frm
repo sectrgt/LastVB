@@ -4,10 +4,10 @@ Begin VB.Form frmStore
    ClientHeight    =   12120
    ClientLeft      =   -2265
    ClientTop       =   705
-   ClientWidth     =   12840
+   ClientWidth     =   14715
    LinkTopic       =   "Form1"
    ScaleHeight     =   12120
-   ScaleWidth      =   12840
+   ScaleWidth      =   14715
    Begin VB.CommandButton cmdCategory 
       Caption         =   "Command1"
       Height          =   615
@@ -276,6 +276,7 @@ Private Type itemInfo
 End Type
 Private udtItems(14) As itemInfo
 Private intCategory As Integer
+Private intIndex As Integer
 Private Sub cmdBack_Click()
 imgBLT.Visible = True
 lblBLT.Visible = True
@@ -296,10 +297,60 @@ Private Sub cmdCancel_Click()
 Unload Me
 End Sub
 
+
 Private Sub cmdCheckout_Click()
 Call itemCheckout
 End Sub
+
 Private Sub cmdSearch_Click()
+If optName.Value = True Then
+    Call searchName
+ElseIf optCost.Value = True Then
+    Call searchCost
+ElseIf optQTN.Value = True Then
+    Call searchQuantity
+End If
+End Sub
+Sub searchCost()
+Dim intX As Integer
+Dim intCost As Integer
+Dim intTemp As Integer
+intCost = InputBox("Enter the cost of the product", "Kipplex") 'Gets search input from user
+    For intX = 0 To UBound(udtItems())
+    If intCost = udtItems(intX).itemCost Then  'Searches the item array for user input
+        intTemp = 1
+        intIndex = intX 'Puts place found in the array in a variable
+    End If
+    Next intX
+If intTemp = 1 Then
+    MsgBox "Item Found", , "Search"
+    lblInfo.Caption = "Name: " & udtItems(intIndex).itemName & vbCrLf & "Cost: $" & udtItems(intIndex).itemCost & vbCrLf & "Quantity: " & udtItems(intIndex).itemQuantity
+    imgCheckout.Picture = LoadPicture(udtItems(intIndex).itemPicturePath)
+ElseIf intTemp <> 1 Then
+        MsgBox "Item not found", , "Search"
+End If
+End Sub
+Sub searchQuantity()
+Dim intX As Integer
+Dim intIndex As Integer
+Dim intQuantity As Integer
+Dim intTemp As Integer
+intQuantity = InputBox("Enter the quantity of the product", "Kipplex") 'Gets search input from user
+    For intX = 0 To UBound(udtItems())
+    If intQuantity = udtItems(intX).itemQuantity Then  'Searches the item array for user input
+        intTemp = 1
+        intIndex = intX 'Puts place found in the array in a variable
+    End If
+    Next intX
+If intTemp = 1 Then
+    MsgBox "Item Found", , "Search"
+    lblInfo.Caption = "Name: " & udtItems(intIndex).itemName & vbCrLf & "Cost: $" & udtItems(intIndex).itemCost & vbCrLf & "Quantity: " & udtItems(intIndex).itemQuantity
+    imgCheckout.Picture = LoadPicture(udtItems(intIndex).itemPicturePath)
+ElseIf intTemp <> 1 Then
+        MsgBox "Item not found", , "Search"
+End If
+End Sub
+Sub searchName()
 Dim intX As Integer
 Dim blnFound As Boolean
 Dim intIndex As Integer
@@ -307,20 +358,19 @@ Dim strName As String
 Dim intQuantity As Integer
 Dim intCost As Integer
 Dim intTemp As Integer
-If optName.Value = True Then
     strName = InputBox("Enter the name of the product", "Kipplex") 'Gets search input from user
-    For intX = 0 To UBound(udtItems)
+    For intX = 0 To UBound(udtItems())
     If strName Like udtItems(intX).itemName = True Then 'Searches the item array for user input
         intTemp = 1
-        intX = intIndex 'Puts place found in the array in a variable
+        intIndex = intX 'Puts place found in the array in a variable
     End If
     Next intX
 If intTemp = 1 Then
     MsgBox "Item Found", , "Search"
     lblInfo.Caption = "Name: " & udtItems(intIndex).itemName & vbCrLf & "Cost: $" & udtItems(intIndex).itemCost & vbCrLf & "Quantity: " & udtItems(intIndex).itemQuantity
+    imgCheckout.Picture = LoadPicture(udtItems(intIndex).itemPicturePath)
 ElseIf intTemp <> 1 Then
         MsgBox "Item not found", , "Search"
-End If
 End If
 End Sub
 Sub itemInfo()
@@ -342,7 +392,7 @@ Sub itemInfo()
 
 'Motherboards
 
-udtItems().itemName = "Gigabyte LGA1151"
+udtItems(3).itemName = "Gigabyte LGA1151"
 udtItems(3).itemCost = 56
 udtItems(3).itemQuantity = 30
 udtItems(3).itemPicturePath = "Gigabyte.jpg"
@@ -366,23 +416,23 @@ udtItems(1).itemQuantity = 40
 udtItems(2).itemCost = 79
 udtItems(2).itemName = "Corsair CX Series"
 udtItems(2).itemPicturePath = "Corsair.jpg"
-udtItems(2).itemQuantity = 35
+udtItems(2).itemQuantity = 50
 
 udtItems(3).itemCost = 180
 udtItems(3).itemName = "EVGA Supernova"
 udtItems(3).itemPicturePath = "EVGAS.jpg"
-udtItems(3).itemQuantity = 20
+udtItems(3).itemQuantity = 80
 
 'Hardrives
 udtItems(9).itemCost = 54
 udtItems(9).itemName = "Seagate 1TB HDD"
 udtItems(9).itemPicturePath = "Seagate.Jpg"
-udtItems(9).itemQuantity = 37
+udtItems(9).itemQuantity = 75
 
 udtItems(10).itemCost = 96
 udtItems(10).itemName = "WD Green 2TB HDD"
 udtItems(10).itemPicturePath = "WD.Jpg"
-udtItems(10).itemQuantity = 30
+udtItems(10).itemQuantity = 15
 
 udtItems(11).itemCost = 600
 udtItems(11).itemName = "HGST 8TB HDD"
@@ -403,7 +453,7 @@ udtItems(13).itemQuantity = 10
 udtItems(14).itemCost = 41
 udtItems(14).itemName = "Kingston HyperX FURY 8GB"
 udtItems(14).itemPicturePath = "Kingston.jpg"
-udtItems(14).itemQuantity = 25
+udtItems(14).itemQuantity = 23
 End Sub
 Private Sub cmdTMT_Click()
 intCategory = 2
@@ -443,6 +493,7 @@ imgTMT.Stretch = True
 imgTRT.Stretch = True
 imgBLT.Stretch = True
 imgBRT.Stretch = True
+imgCheckout.Stretch = True
 fraOptions.Caption = "Options"
 imgTLT.Picture = LoadPicture("Processor.jpg")
 Call itemInfo
@@ -481,6 +532,7 @@ ElseIf intCategory = 5 Then
     imgTRT.Picture = LoadPicture(udtItems(14).itemPicturePath)
 End If
 End Sub
+
 Private Sub imgTLT_Click()
 Dim intIndex As Integer
 If intCategory = 1 Then
@@ -522,27 +574,22 @@ ElseIf intCategory = 5 Then
     lblInfo.Caption = "Name: " & udtItems(14).itemName & vbCrLf & "Cost: $" & udtItems(14).itemCost & vbCrLf & "Quantity: " & udtItems(14).itemQuantity
 End If
 End Sub
-'Sub itemCheckout()
-'Dim dblCost As Double
-'dblCost = udtItems(intIndex).itemCost
-'Static intCounter As Integer
-'Dim intX As Integer
-'Dim dblCost As Double
-'udtItems(intX).itemCost = dblCost
-'Dim dblTotalCost As Double
-'Const dblTax As Double = 0.08375
-''intCounter = intCounter + 1
-'lblCounter.Caption = "Customer Number: " & intCounter
-'lstList.Clear
-'dblTotalCost = dblCost + dblCost * dblTax
-'MsgBox "Sales Tax: " & dblTax & vbCrLf & "Total Cost: " & dblTotalCost, , "Receipt"
-'End Sub
-
+Sub itemCheckout()
+Dim dblCost As Double
+Dim dblTotalCost As Double
+Static intCounter As Integer
+Const dblTax As Double = 0.08375
+lstList.AddItem udtItems(intIndex).itemName
+udtItems(intIndex).itemQuantity = udtItems(intIndex).itemQuantity - 1
+dblCost = (dblCost + udtItems(intIndex).itemCost) * dblTax
+intCounter = intCounter + 1
+lblCounter.Caption = "Customer Number: " & intCounter
+dblTotalCost = dblCost + udtItems(intIndex).itemCost
+MsgBox "Sales Tax: " & dblTax & vbCrLf & "Total Cost: " & dblTotalCost, , "Receipt"
+End Sub
 Private Sub cmdCategory_Click(Index As Integer)
-
 Index = (Index * intCategory) + 1
-lblInfo.Caption = "Name: " & udtItems(Index).itemName & vbCrLf & "Cost: $" & udtItems(Index).itemCost & vbCrLf & "Quantity: " & udtItems(Index).itemQuantity
-'MsgBox Index
+MsgBox Index
 'MsgBox udtItems(Index).itemName
 End Sub
 Private Sub mnuCPU_Click(Index As Integer)
@@ -565,3 +612,4 @@ Private Sub mnuRAM_Click(Index As Integer)
 intCategory = 4
 Call imgDisplay
 End Sub
+
