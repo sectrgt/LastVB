@@ -274,7 +274,7 @@ Private Type itemInfo
     itemQuantity As Integer
     itemPicturePath As String
 End Type
-Private udtItems(14) As itemInfo
+Private udtItems(15) As itemInfo
 Private intCategory As Integer
 Private intIndex As Integer
 Private Sub cmdBack_Click()
@@ -375,85 +375,85 @@ End If
 End Sub
 Sub itemInfo()
 'CPUs
-'udtItems(0).itemName = "Intel Core I7-6700K"
-'udtItems(0).itemCost = 420
-'udtItems(0).itemQuantity = 10
-'udtItems(0).itemPicturePath = "I7-6700K.jpg"
+udtItems(1).itemName = "Intel Core I7-6700K"
+udtItems(1).itemCost = 420
+udtItems(1).itemQuantity = 10
+udtItems(1).itemPicturePath = "I7-6700K.jpg"
 
-'udtItems(1).itemName = "Intel Core I7-6700"
-'udtItems(1).itemCost = 400
-'udtItems(1).itemQuantity = 15
-'udtItems(1).itemPicturePath = "I7-6700.jpg"
+udtItems(2).itemName = "Intel Core I7-6700"
+udtItems(2).itemCost = 400
+udtItems(2).itemQuantity = 15
+udtItems(2).itemPicturePath = "I7-6700.jpg"
 
-'udtItems(2).itemName = "Intel Core I5-6600K"
-'udtItems(2).itemPicturePath = "I5-6700.jpg"
-'udtItems(2).itemCost = 260
-'udtItems(2).itemQuantity = 25
+udtItems(3).itemName = "Intel Core I5-6600K"
+udtItems(3).itemPicturePath = "I5-6700.jpg"
+udtItems(3).itemCost = 260
+udtItems(3).itemQuantity = 25
 
 'Motherboards
 
-udtItems(3).itemName = "Gigabyte LGA1151"
-udtItems(3).itemCost = 56
-udtItems(3).itemQuantity = 30
-udtItems(3).itemPicturePath = "Gigabyte.jpg"
+udtItems(4).itemName = "Gigabyte LGA1151"
+udtItems(4).itemCost = 56
+udtItems(4).itemQuantity = 30
+udtItems(4).itemPicturePath = "Gigabyte.jpg"
 
-udtItems(4).itemName = "ASUS Z170-A"
-udtItems(4).itemCost = 170
-udtItems(4).itemQuantity = 20
-udtItems(4).itemPicturePath = "Asus.Jpg"
+udtItems(5).itemName = "ASUS Z170-A"
+udtItems(5).itemCost = 170
+udtItems(5).itemQuantity = 20
+udtItems(5).itemPicturePath = "Asus.Jpg"
 
-udtItems(5).itemCost = 100
-udtItems(5).itemName = "MSI 970"
-udtItems(5).itemPicturePath = "MSI.jpg"
-udtItems(5).itemQuantity = 35
+udtItems(6).itemCost = 100
+udtItems(6).itemName = "MSI 970"
+udtItems(6).itemPicturePath = "MSI.jpg"
+udtItems(6).itemQuantity = 35
 
 'Power Supplies
-udtItems(1).itemCost = 40
-udtItems(1).itemName = "EVGA 500"
-udtItems(1).itemPicturePath = "EVGA.jpg"
-udtItems(1).itemQuantity = 40
+udtItems(7).itemCost = 40
+udtItems(7).itemName = "EVGA 500"
+udtItems(7).itemPicturePath = "EVGA.jpg"
+udtItems(7).itemQuantity = 40
 
-udtItems(2).itemCost = 79
-udtItems(2).itemName = "Corsair CX Series"
-udtItems(2).itemPicturePath = "Corsair.jpg"
-udtItems(2).itemQuantity = 50
+udtItems(8).itemCost = 79
+udtItems(8).itemName = "Corsair CX Series"
+udtItems(8).itemPicturePath = "Corsair.jpg"
+udtItems(8).itemQuantity = 50
 
-udtItems(3).itemCost = 180
-udtItems(3).itemName = "EVGA Supernova"
-udtItems(3).itemPicturePath = "EVGAS.jpg"
-udtItems(3).itemQuantity = 80
+udtItems(9).itemCost = 180
+udtItems(9).itemName = "EVGA Supernova"
+udtItems(9).itemPicturePath = "EVGAS.jpg"
+udtItems(9).itemQuantity = 80
 
 'Hardrives
-udtItems(9).itemCost = 54
-udtItems(9).itemName = "Seagate 1TB HDD"
-udtItems(9).itemPicturePath = "Seagate.Jpg"
-udtItems(9).itemQuantity = 75
+udtItems(10).itemCost = 54
+udtItems(10).itemName = "Seagate 1TB HDD"
+udtItems(10).itemPicturePath = "Seagate.Jpg"
+udtItems(10).itemQuantity = 75
 
-udtItems(10).itemCost = 96
-udtItems(10).itemName = "WD Green 2TB HDD"
-udtItems(10).itemPicturePath = "WD.Jpg"
-udtItems(10).itemQuantity = 15
+udtItems(11).itemCost = 96
+udtItems(11).itemName = "WD Green 2TB HDD"
+udtItems(11).itemPicturePath = "WD.Jpg"
+udtItems(11).itemQuantity = 15
 
-udtItems(11).itemCost = 600
-udtItems(11).itemName = "HGST 8TB HDD"
-udtItems(11).itemPicturePath = "HGST.Jpg"
-udtItems(11).itemQuantity = 5
+udtItems(12).itemCost = 600
+udtItems(12).itemName = "HGST 8TB HDD"
+udtItems(12).itemPicturePath = "HGST.Jpg"
+udtItems(12).itemQuantity = 5
 
 'RAM
-udtItems(12).itemCost = 26
-udtItems(12).itemName = "Crucial Ballistix Sport 4GB"
-udtItems(12).itemPicturePath = "Crucial.Jpg"
-udtItems(12).itemQuantity = 38
+udtItems(13).itemCost = 26
+udtItems(13).itemName = "Crucial Ballistix Sport 4GB"
+udtItems(13).itemPicturePath = "Crucial.Jpg"
+udtItems(13).itemQuantity = 38
 
-udtItems(13).itemName = "Vengeance LPX 64GB"
-udtItems(13).itemCost = 594
-udtItems(13).itemPicturePath = "CorsairV.Jpg"
-udtItems(13).itemQuantity = 10
+udtItems(14).itemName = "Vengeance LPX 64GB"
+udtItems(14).itemCost = 594
+udtItems(14).itemPicturePath = "CorsairV.Jpg"
+udtItems(14).itemQuantity = 10
 
-udtItems(14).itemCost = 41
-udtItems(14).itemName = "Kingston HyperX FURY 8GB"
-udtItems(14).itemPicturePath = "Kingston.jpg"
-udtItems(14).itemQuantity = 23
+udtItems(15).itemCost = 41
+udtItems(15).itemName = "Kingston HyperX FURY 8GB"
+udtItems(15).itemPicturePath = "Kingston.jpg"
+udtItems(15).itemQuantity = 23
 End Sub
 Private Sub cmdTMT_Click()
 intCategory = 2
@@ -511,32 +511,32 @@ Call imgDisplay
 End Sub
 Sub imgDisplay()
 If intCategory = 1 Then
+    imgTLT.Picture = LoadPicture(udtItems(7).itemPicturePath)
+    imgTMT.Picture = LoadPicture(udtItems(8).itemPicturePath)
+    imgTRT.Picture = LoadPicture(udtItems(9).itemPicturePath)
+ElseIf intCategory = 2 Then
+    imgTLT.Picture = LoadPicture(udtItems(4).itemPicturePath)
+    imgTMT.Picture = LoadPicture(udtItems(5).itemPicturePath)
+    imgTRT.Picture = LoadPicture(udtItems(6).itemPicturePath)
+ElseIf intCategory = 3 Then
+    imgTLT.Picture = LoadPicture(udtItems(10).itemPicturePath)
+    imgTMT.Picture = LoadPicture(udtItems(11).itemPicturePath)
+    imgTRT.Picture = LoadPicture(udtItems(12).itemPicturePath)
+ElseIf intCategory = 4 Then
+    imgTLT.Picture = LoadPicture(udtItems(13).itemPicturePath)
+    imgTMT.Picture = LoadPicture(udtItems(14).itemPicturePath)
+    imgTRT.Picture = LoadPicture(udtItems(15).itemPicturePath)
+ElseIf intCategory = 5 Then
     imgTLT.Picture = LoadPicture(udtItems(1).itemPicturePath)
     imgTMT.Picture = LoadPicture(udtItems(2).itemPicturePath)
     imgTRT.Picture = LoadPicture(udtItems(3).itemPicturePath)
-ElseIf intCategory = 2 Then
-    imgTLT.Picture = LoadPicture(udtItems(3).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(4).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(5).itemPicturePath)
-ElseIf intCategory = 3 Then
-    imgTLT.Picture = LoadPicture(udtItems(6).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(7).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(8).itemPicturePath)
-ElseIf intCategory = 4 Then
-    imgTLT.Picture = LoadPicture(udtItems(9).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(10).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(11).itemPicturePath)
-ElseIf intCategory = 5 Then
-    imgTLT.Picture = LoadPicture(udtItems(12).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(13).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(14).itemPicturePath)
 End If
 End Sub
 
 Private Sub imgTLT_Click()
 Dim intIndex As Integer
 If intCategory = 1 Then
-    lblInfo.Caption = "Name: " & udtItems(1).itemName & vbCrLf & "Cost: $" & udtItems(0).itemCost & vbCrLf & "Quantity: " & udtItems(0).itemQuantity
+    lblInfo.Caption = "Name: " & udtItems(6).itemName & vbCrLf & "Cost: $" & udtItems(6).itemCost & vbCrLf & "Quantity: " & udtItems(6).itemQuantity
 ElseIf intCategory = 2 Then
     lblInfo.Caption = "Name: " & udtItems(3).itemName & vbCrLf & "Cost: $" & udtItems(3).itemCost & vbCrLf & "Quantity: " & udtItems(3).itemQuantity
 ElseIf intCategory = 3 Then
@@ -549,7 +549,7 @@ End If
 End Sub
 Private Sub imgTMT_Click()
 If intCategory = 1 Then
-    lblInfo.Caption = "Name: " & udtItems(2).itemName & vbCrLf & "Cost: $" & udtItems(1).itemCost & vbCrLf & "Quantity: " & udtItems(1).itemQuantity
+    lblInfo.Caption = "Name: " & udtItems(7).itemName & vbCrLf & "Cost: $" & udtItems(7).itemCost & vbCrLf & "Quantity: " & udtItems(7).itemQuantity
 ElseIf intCategory = 2 Then
     lblInfo.Caption = "Name: " & udtItems(4).itemName & vbCrLf & "Cost: $" & udtItems(4).itemCost & vbCrLf & "Quantity: " & udtItems(4).itemQuantity
 ElseIf intCategory = 3 Then
@@ -563,7 +563,7 @@ End Sub
 Private Sub imgTRT_Click()
 Dim intIndex As Integer
 If intCategory = 1 Then
-    lblInfo.Caption = "Name: " & udtItems(3).itemName & vbCrLf & "Cost: $" & udtItems(2).itemCost & vbCrLf & "Quantity: " & udtItems(2).itemQuantity
+    lblInfo.Caption = "Name: " & udtItems(8).itemName & vbCrLf & "Cost: $" & udtItems(8).itemCost & vbCrLf & "Quantity: " & udtItems(8).itemQuantity
 ElseIf intCategory = 2 Then
     lblInfo.Caption = "Name: " & udtItems(5).itemName & vbCrLf & "Cost: $" & udtItems(5).itemCost & vbCrLf & "Quantity: " & udtItems(5).itemQuantity
 ElseIf intCategory = 3 Then
@@ -589,11 +589,13 @@ MsgBox "Sales Tax: " & dblTax & vbCrLf & "Total Cost: " & dblTotalCost, , "Recei
 End Sub
 Private Sub cmdCategory_Click(Index As Integer)
 Index = (Index * intCategory) + 1
+'lblInfo.Caption = "Name: " & udtItems(Index).itemName & vbCrLf & "Cost: $" & udtItems(Index).itemCost & vbCrLf & "Quantity: " & udtItems(Index).itemQuantity
+
 MsgBox Index
 'MsgBox udtItems(Index).itemName
 End Sub
 Private Sub mnuCPU_Click(Index As Integer)
-intCategory = 4 'Check category
+intCategory = 5 'Check category
 Call imgDisplay
 End Sub
 Private Sub mnumobo_Click(Index As Integer)
