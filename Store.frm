@@ -1,13 +1,12 @@
 VERSION 5.00
 Begin VB.Form frmStore 
-   Caption         =   "VERSION 5.00"
    ClientHeight    =   12195
    ClientLeft      =   -2265
    ClientTop       =   705
-   ClientWidth     =   22920
+   ClientWidth     =   21360
    LinkTopic       =   "Form1"
    ScaleHeight     =   12195
-   ScaleWidth      =   22920
+   ScaleWidth      =   21360
    Begin VB.Frame fraProducts 
       Caption         =   "Frame1"
       Height          =   735
@@ -207,13 +206,21 @@ Begin VB.Form frmStore
       Top             =   120
       Width           =   16815
    End
+   Begin VB.Menu mnuFile 
+      Caption         =   "File"
+      Index           =   0
+      Begin VB.Menu mnuAbout 
+         Caption         =   "About"
+         Index           =   2
+      End
+   End
    Begin VB.Menu mnupsu 
       Caption         =   "Power Supplies"
-      Index           =   5
+      Index           =   1
    End
    Begin VB.Menu mnumobo 
       Caption         =   "Motherboards"
-      Index           =   4
+      Index           =   2
    End
    Begin VB.Menu mnuHDD 
       Caption         =   "Hard Drives"
@@ -221,11 +228,27 @@ Begin VB.Form frmStore
    End
    Begin VB.Menu mnuRAM 
       Caption         =   "RAM"
-      Index           =   2
+      Index           =   4
    End
    Begin VB.Menu mnuCPU 
       Caption         =   "CPU's"
-      Index           =   1
+      Index           =   5
+   End
+   Begin VB.Menu mnuSearch 
+      Caption         =   "Search"
+      Index           =   6
+      Begin VB.Menu mnuQtnSearh 
+         Caption         =   "Quantity"
+         Index           =   7
+      End
+      Begin VB.Menu mnuSearchCost 
+         Caption         =   "Cost"
+         Index           =   8
+      End
+      Begin VB.Menu mnuSeachName 
+         Caption         =   "Name"
+         Index           =   9
+      End
    End
 End
 Attribute VB_Name = "frmStore"
@@ -367,7 +390,7 @@ udtItems(2).itemQuantity = 25
 
 'Motherboards
 
-udtItems(3).itemName = "Gigabyte LGA1151"
+udtItems(3).itemName = "Gigabyte LGA1151 Intell H110 Micro ATX DDR4"
 udtItems(3).itemCost = 56
 udtItems(3).itemQuantity = 30
 udtItems(3).itemPicturePath = "Gigabyte.jpg"
@@ -497,6 +520,11 @@ ElseIf strTemp = vbNo Then
 End If
 lblInfo.Caption = "Name: " & udtItems(intIndex).itemName & vbCrLf & "Cost: $" & udtItems(intIndex).itemCost & vbCrLf & "Quantity: " & udtItems(intIndex).itemQuantity
 End Sub
+
+Private Sub mnuAbout_Click(Index As Integer)
+MsgBox ("Created by Tarek Elkheir and Jonathan Bubloski" & vbCrLf & "Mr. Nickels period 2" & vbCrLf & "Used with permission from Kipplex, visit our real store at kipplex.com")
+End Sub
+
 Private Sub mnuCPU_Click(Index As Integer)
 Call imgDisplay(0, 1, 2)
 intItemOne = 0
@@ -521,11 +549,24 @@ intItemOne = 9
 intItemTwo = 10
 intItemThree = 11
 End Sub
+
+Private Sub mnuQtnSearh_Click(Index As Integer)
+Call searchQuantity
+End Sub
+
 Private Sub mnuRAM_Click(Index As Integer)
 Call imgDisplay(12, 13, 14)
 intItemOne = 12
 intItemTwo = 13
 intItemThree = 14
+End Sub
+
+Private Sub mnuSeachName_Click(Index As Integer)
+Call searchName
+End Sub
+
+Private Sub mnuSearchCost_Click(Index As Integer)
+Call searchCost
 End Sub
 
 Private Sub optOne_Click()
