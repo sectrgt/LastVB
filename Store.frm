@@ -1,65 +1,44 @@
 VERSION 5.00
 Begin VB.Form frmStore 
    Caption         =   "VERSION 5.00"
-   ClientHeight    =   12120
+   ClientHeight    =   12195
    ClientLeft      =   -2265
    ClientTop       =   705
-   ClientWidth     =   14715
+   ClientWidth     =   22920
    LinkTopic       =   "Form1"
-   ScaleHeight     =   12120
-   ScaleWidth      =   14715
-   Begin VB.CommandButton cmdCategory 
-      Caption         =   "Command1"
-      Height          =   615
-      Index           =   4
-      Left            =   3840
-      TabIndex        =   23
-      Top             =   9120
-      Width           =   3375
-   End
-   Begin VB.CommandButton cmdCategory 
-      Caption         =   "Command1"
-      Height          =   615
-      Index           =   3
-      Left            =   120
-      TabIndex        =   22
-      Top             =   9120
-      Width           =   3375
-   End
-   Begin VB.CommandButton cmdCategory 
-      Caption         =   "Command1"
-      Height          =   615
-      Index           =   2
-      Left            =   7560
-      TabIndex        =   21
-      Top             =   4800
-      Width           =   3495
-   End
-   Begin VB.CommandButton cmdCategory 
-      Caption         =   "Command1"
-      Height          =   615
-      Index           =   1
-      Left            =   3960
-      TabIndex        =   20
-      Top             =   4800
-      Width           =   3375
-   End
-   Begin VB.CommandButton cmdCategory 
-      Caption         =   "Command1"
-      Height          =   615
-      Index           =   0
-      Left            =   120
-      TabIndex        =   19
-      Top             =   4800
-      Width           =   3495
-   End
-   Begin VB.CommandButton cmdBack 
-      Caption         =   "Command7"
+   ScaleHeight     =   12195
+   ScaleWidth      =   22920
+   Begin VB.Frame fraProducts 
+      Caption         =   "Frame1"
       Height          =   735
-      Left            =   3960
-      TabIndex        =   17
-      Top             =   10080
-      Width           =   3375
+      Left            =   120
+      TabIndex        =   18
+      Top             =   4800
+      Width           =   11055
+      Begin VB.OptionButton optThree 
+         Caption         =   "Option1"
+         Height          =   375
+         Left            =   8160
+         TabIndex        =   21
+         Top             =   240
+         Width           =   1935
+      End
+      Begin VB.OptionButton optTwo 
+         Caption         =   "Option1"
+         Height          =   375
+         Left            =   4680
+         TabIndex        =   20
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.OptionButton optOne 
+         Caption         =   "Option1"
+         Height          =   375
+         Left            =   960
+         TabIndex        =   19
+         Top             =   240
+         Width           =   1215
+      End
    End
    Begin VB.Frame fraOptions 
       Caption         =   "Frame1"
@@ -101,7 +80,7 @@ Begin VB.Form frmStore
       Top             =   9720
       Width           =   4095
    End
-   Begin VB.CommandButton cmdCheckout 
+   Begin VB.CommandButton cmdAddToCart 
       Caption         =   "Command7"
       Height          =   735
       Left            =   12480
@@ -109,12 +88,12 @@ Begin VB.Form frmStore
       Top             =   7200
       Width           =   3975
    End
-   Begin VB.CommandButton Command6 
+   Begin VB.CommandButton cmdCheckout 
       Caption         =   "Command6"
       Height          =   1095
-      Left            =   14640
+      Left            =   14520
       TabIndex        =   8
-      Top             =   9480
+      Top             =   9600
       Width           =   2535
    End
    Begin VB.ListBox lstList 
@@ -135,9 +114,9 @@ Begin VB.Form frmStore
    Begin VB.Label lblCounter 
       Caption         =   "Label1"
       Height          =   735
-      Left            =   8160
-      TabIndex        =   18
-      Top             =   10920
+      Left            =   18000
+      TabIndex        =   17
+      Top             =   11160
       Width           =   2655
    End
    Begin VB.Label lblSearchTitle 
@@ -162,12 +141,6 @@ Begin VB.Form frmStore
       Top             =   1560
       Width           =   3975
    End
-   Begin VB.Image imgBRT 
-      Height          =   2415
-      Left            =   3840
-      Top             =   6600
-      Width           =   3495
-   End
    Begin VB.Label lblBRT 
       Caption         =   "Label1"
       Height          =   615
@@ -176,7 +149,7 @@ Begin VB.Form frmStore
       Top             =   5760
       Width           =   3495
    End
-   Begin VB.Image imgTMT 
+   Begin VB.Image imgTwo 
       Height          =   2415
       Left            =   3840
       Top             =   2280
@@ -190,12 +163,6 @@ Begin VB.Form frmStore
       Top             =   1440
       Width           =   3495
    End
-   Begin VB.Image imgBLT 
-      Height          =   2415
-      Left            =   120
-      Top             =   6600
-      Width           =   3495
-   End
    Begin VB.Label lblBLT 
       Caption         =   "Label1"
       Height          =   615
@@ -204,7 +171,7 @@ Begin VB.Form frmStore
       Top             =   5760
       Width           =   3495
    End
-   Begin VB.Image imgTRT 
+   Begin VB.Image imgThree 
       Height          =   2415
       Left            =   7560
       Top             =   2280
@@ -218,7 +185,7 @@ Begin VB.Form frmStore
       Top             =   1440
       Width           =   3495
    End
-   Begin VB.Image imgTLT 
+   Begin VB.Image imgOne 
       Height          =   2415
       Left            =   120
       Top             =   2280
@@ -266,7 +233,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 Option Explicit
 Private Type itemInfo
     itemName As String
@@ -274,34 +240,43 @@ Private Type itemInfo
     itemQuantity As Integer
     itemPicturePath As String
 End Type
-Private udtItems(15) As itemInfo
-Private intCategory As Integer
+Private udtItems(14) As itemInfo
+Private Type Receipt
+    totalCost As Double
+    salesTax  As Double
+End Type
+Private udtReceipt As Receipt
 Private intIndex As Integer
-Private Sub cmdBack_Click()
-imgBLT.Visible = True
-lblBLT.Visible = True
-cmdBLT.Visible = True
-imgBRT.Visible = True
-lblBRT.Visible = True
-cmdBRT.Visible = True
-End Sub
-Private Sub cmdBLT_Click()
-intCategory = 4
-Call imgDisplay
-End Sub
-Private Sub cmdBRT_Click()
-intCategory = 5
-Call imgDisplay
-End Sub
+Private intItemOne As Integer
+Private intItemTwo As Integer
+Private intItemThree As Integer
+Private intCounter As Integer
+Private dblCost As Double
 Private Sub cmdCancel_Click()
 Unload Me
 End Sub
-
-
 Private Sub cmdCheckout_Click()
 Call itemCheckout
 End Sub
-
+Sub itemCheckout()
+udtReceipt.totalCost = dblCost
+udtReceipt.salesTax = 0.08375
+intCounter = intCounter + 1
+lblCounter.Caption = "Customer number: " & intCounter
+udtReceipt.totalCost = udtReceipt.totalCost + (udtReceipt.totalCost * udtReceipt.salesTax)
+MsgBox "Cost before tax: $" & dblCost & vbCrLf & "Sales Tax: " & udtReceipt.salesTax & vbCrLf & "Total Cost: $" & udtReceipt.totalCost, , "Receipt"
+MsgBox "Cost: $" & udtReceipt.totalCost, , "Receipt"
+lstList.Clear
+udtReceipt.totalCost = 0
+dblCost = 0
+imgOne.Picture = LoadPicture("")
+imgTwo.Picture = LoadPicture("")
+imgThree.Picture = LoadPicture("")
+lblInfo.Caption = ""
+optOne.Value = False
+optTwo.Value = False
+optThree.Value = False
+End Sub
 Private Sub cmdSearch_Click()
 If optName.Value = True Then
     Call searchName
@@ -375,98 +350,91 @@ End If
 End Sub
 Sub itemInfo()
 'CPUs
-udtItems(1).itemName = "Intel Core I7-6700K"
-udtItems(1).itemCost = 420
-udtItems(1).itemQuantity = 10
-udtItems(1).itemPicturePath = "I7-6700K.jpg"
+udtItems(0).itemName = "Intel Core I7-6700K"
+udtItems(0).itemCost = 420
+udtItems(0).itemQuantity = 10
+udtItems(0).itemPicturePath = "I7-6700K.jpg"
 
-udtItems(2).itemName = "Intel Core I7-6700"
-udtItems(2).itemCost = 400
-udtItems(2).itemQuantity = 15
-udtItems(2).itemPicturePath = "I7-6700.jpg"
+udtItems(1).itemName = "Intel Core I7-6700"
+udtItems(1).itemCost = 400
+udtItems(1).itemQuantity = 15
+udtItems(1).itemPicturePath = "I7-6700.jpg"
 
-udtItems(3).itemName = "Intel Core I5-6600K"
-udtItems(3).itemPicturePath = "I5-6700.jpg"
-udtItems(3).itemCost = 260
-udtItems(3).itemQuantity = 25
+udtItems(2).itemName = "Intel Core I5-6600K"
+udtItems(2).itemPicturePath = "I5-6700.jpg"
+udtItems(2).itemCost = 260
+udtItems(2).itemQuantity = 25
 
 'Motherboards
 
-udtItems(4).itemName = "Gigabyte LGA1151"
-udtItems(4).itemCost = 56
-udtItems(4).itemQuantity = 30
-udtItems(4).itemPicturePath = "Gigabyte.jpg"
+udtItems(3).itemName = "Gigabyte LGA1151"
+udtItems(3).itemCost = 56
+udtItems(3).itemQuantity = 30
+udtItems(3).itemPicturePath = "Gigabyte.jpg"
 
-udtItems(5).itemName = "ASUS Z170-A"
-udtItems(5).itemCost = 170
-udtItems(5).itemQuantity = 20
-udtItems(5).itemPicturePath = "Asus.Jpg"
+udtItems(4).itemName = "ASUS Z170-A"
+udtItems(4).itemCost = 170
+udtItems(4).itemQuantity = 20
+udtItems(4).itemPicturePath = "Asus.Jpg"
 
-udtItems(6).itemCost = 100
-udtItems(6).itemName = "MSI 970"
-udtItems(6).itemPicturePath = "MSI.jpg"
-udtItems(6).itemQuantity = 35
+udtItems(5).itemCost = 100
+udtItems(5).itemName = "MSI 970"
+udtItems(5).itemPicturePath = "MSI.jpg"
+udtItems(5).itemQuantity = 35
 
 'Power Supplies
-udtItems(7).itemCost = 40
-udtItems(7).itemName = "EVGA 500"
-udtItems(7).itemPicturePath = "EVGA.jpg"
-udtItems(7).itemQuantity = 40
+udtItems(6).itemCost = 40
+udtItems(6).itemName = "EVGA 500"
+udtItems(6).itemPicturePath = "EVGA.jpg"
+udtItems(6).itemQuantity = 40
 
-udtItems(8).itemCost = 79
-udtItems(8).itemName = "Corsair CX Series"
-udtItems(8).itemPicturePath = "Corsair.jpg"
-udtItems(8).itemQuantity = 50
+udtItems(7).itemCost = 79
+udtItems(7).itemName = "Corsair CX Series"
+udtItems(7).itemPicturePath = "Corsair.jpg"
+udtItems(7).itemQuantity = 50
 
-udtItems(9).itemCost = 180
-udtItems(9).itemName = "EVGA Supernova"
-udtItems(9).itemPicturePath = "EVGAS.jpg"
-udtItems(9).itemQuantity = 80
+udtItems(8).itemCost = 180
+udtItems(8).itemName = "EVGA Supernova"
+udtItems(8).itemPicturePath = "EVGAS.jpg"
+udtItems(8).itemQuantity = 80
 
 'Hardrives
-udtItems(10).itemCost = 54
-udtItems(10).itemName = "Seagate 1TB HDD"
-udtItems(10).itemPicturePath = "Seagate.Jpg"
-udtItems(10).itemQuantity = 75
+udtItems(9).itemCost = 54
+udtItems(9).itemName = "Seagate 1TB HDD"
+udtItems(9).itemPicturePath = "Seagate.Jpg"
+udtItems(9).itemQuantity = 75
 
-udtItems(11).itemCost = 96
-udtItems(11).itemName = "WD Green 2TB HDD"
-udtItems(11).itemPicturePath = "WD.Jpg"
-udtItems(11).itemQuantity = 15
+udtItems(10).itemCost = 96
+udtItems(10).itemName = "WD Green 2TB HDD"
+udtItems(10).itemPicturePath = "WD.Jpg"
+udtItems(10).itemQuantity = 15
 
-udtItems(12).itemCost = 600
-udtItems(12).itemName = "HGST 8TB HDD"
-udtItems(12).itemPicturePath = "HGST.Jpg"
-udtItems(12).itemQuantity = 5
+udtItems(11).itemCost = 600
+udtItems(11).itemName = "HGST 8TB HDD"
+udtItems(11).itemPicturePath = "HGST.Jpg"
+udtItems(11).itemQuantity = 5
 
 'RAM
-udtItems(13).itemCost = 26
-udtItems(13).itemName = "Crucial Ballistix Sport 4GB"
-udtItems(13).itemPicturePath = "Crucial.Jpg"
-udtItems(13).itemQuantity = 38
+udtItems(12).itemCost = 26
+udtItems(12).itemName = "Crucial Ballistix Sport 4GB"
+udtItems(12).itemPicturePath = "Crucial.Jpg"
+udtItems(12).itemQuantity = 38
 
-udtItems(14).itemName = "Vengeance LPX 64GB"
-udtItems(14).itemCost = 594
-udtItems(14).itemPicturePath = "CorsairV.Jpg"
-udtItems(14).itemQuantity = 10
+udtItems(13).itemName = "Vengeance LPX 64GB"
+udtItems(13).itemCost = 594
+udtItems(13).itemPicturePath = "CorsairV.Jpg"
+udtItems(13).itemQuantity = 10
 
-udtItems(15).itemCost = 41
-udtItems(15).itemName = "Kingston HyperX FURY 8GB"
-udtItems(15).itemPicturePath = "Kingston.jpg"
-udtItems(15).itemQuantity = 23
+udtItems(14).itemCost = 41
+udtItems(14).itemName = "Kingston HyperX FURY 8GB"
+udtItems(14).itemPicturePath = "Kingston.jpg"
+udtItems(14).itemQuantity = 23
 End Sub
-Private Sub cmdTMT_Click()
-intCategory = 2
-Call imgDisplay
-End Sub
-Private Sub cmdTRT_Click()
-intCategory = 3
-Call imgDisplay
-End Sub
-
 Private Sub Form_Load()
-intCategory = 1
-cmdBack.Caption = "Back"
+intCounter = 1
+lblCounter.Caption = "Customer: " & intCounter
+cmdCheckout.Caption = "Checkout"
+lblInfo.Caption = ""
 frmStore.Caption = "Kipplex Hardware Store"
 frmStore.WindowState = vbMaximized
 lbltitle.Caption = "Welcome to the Kipplex Hardware Store. Select your item category below."
@@ -479,7 +447,12 @@ cmdCancel.Caption = "Exit"
 optName.Caption = "Name"
 optQTN.Caption = "Quantity"
 optCost.Caption = "Cost"
+optOne.Caption = "Item One"
+optTwo.Caption = "Item Two"
+optThree.Caption = "Item Three"
+fraProducts.Caption = "Products"
 cmdCheckout.Caption = "Checkout"
+cmdAddToCart.Caption = "Add to Cart"
 lblSearchTitle.Caption = "Enter the name, cost, or quantity of the item to search"
 cmdSearch.Caption = "Search"
 lblTLT.Alignment = 2
@@ -488,130 +461,84 @@ lblRMT.Alignment = 2
 lblBLT.Alignment = 2
 lblBRT.Alignment = 2
 lblSearchTitle.Alignment = 2
-imgTLT.Stretch = True
-imgTMT.Stretch = True
-imgTRT.Stretch = True
-imgBLT.Stretch = True
-imgBRT.Stretch = True
+imgOne.Stretch = True
+imgTwo.Stretch = True
+imgThree.Stretch = True
 imgCheckout.Stretch = True
 fraOptions.Caption = "Options"
-imgTLT.Picture = LoadPicture("Processor.jpg")
 Call itemInfo
 End Sub
-Private Sub cmdTLT_Click()
-'imgBLT.Visible = False
-'lblBLT.Visible = False
-'cmdBLT.Visible = False
-'imgBRT.Visible = False
-'lblBRT.Visible = False
-'cmdBRT.Visible = False
-'cmdTLT.Caption = "To View Info, Click on Photo"
-intCategory = 1
-Call imgDisplay
+Sub imgDisplay(ByVal intOne As Integer, ByVal intTwo As Integer, ByVal intThree As Integer)
+imgOne.Picture = LoadPicture(udtItems(intOne).itemPicturePath)
+imgTwo.Picture = LoadPicture(udtItems(intTwo).itemPicturePath)
+imgThree.Picture = LoadPicture(udtItems(intThree).itemPicturePath)
 End Sub
-Sub imgDisplay()
-If intCategory = 1 Then
-    imgTLT.Picture = LoadPicture(udtItems(7).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(8).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(9).itemPicturePath)
-ElseIf intCategory = 2 Then
-    imgTLT.Picture = LoadPicture(udtItems(4).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(5).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(6).itemPicturePath)
-ElseIf intCategory = 3 Then
-    imgTLT.Picture = LoadPicture(udtItems(10).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(11).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(12).itemPicturePath)
-ElseIf intCategory = 4 Then
-    imgTLT.Picture = LoadPicture(udtItems(13).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(14).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(15).itemPicturePath)
-ElseIf intCategory = 5 Then
-    imgTLT.Picture = LoadPicture(udtItems(1).itemPicturePath)
-    imgTMT.Picture = LoadPicture(udtItems(2).itemPicturePath)
-    imgTRT.Picture = LoadPicture(udtItems(3).itemPicturePath)
-End If
+Private Sub cmdAddToCart_Click()
+Call AddToCart
 End Sub
-
-Private Sub imgTLT_Click()
-Dim intIndex As Integer
-If intCategory = 1 Then
-    lblInfo.Caption = "Name: " & udtItems(6).itemName & vbCrLf & "Cost: $" & udtItems(6).itemCost & vbCrLf & "Quantity: " & udtItems(6).itemQuantity
-ElseIf intCategory = 2 Then
-    lblInfo.Caption = "Name: " & udtItems(3).itemName & vbCrLf & "Cost: $" & udtItems(3).itemCost & vbCrLf & "Quantity: " & udtItems(3).itemQuantity
-ElseIf intCategory = 3 Then
-    lblInfo.Caption = "Name: " & udtItems(6).itemName & vbCrLf & "Cost: $" & udtItems(6).itemCost & vbCrLf & "Quantity: " & udtItems(6).itemQuantity
-ElseIf intCategory = 4 Then
-    lblInfo.Caption = "Name: " & udtItems(9).itemName & vbCrLf & "Cost: $" & udtItems(9).itemCost & vbCrLf & "Quantity: " & udtItems(9).itemQuantity
-ElseIf intCategory = 5 Then
-    lblInfo.Caption = "Name: " & udtItems(12).itemName & vbCrLf & "Cost: $" & udtItems(12).itemCost & vbCrLf & "Quantity: " & udtItems(12).itemQuantity
-End If
-End Sub
-Private Sub imgTMT_Click()
-If intCategory = 1 Then
-    lblInfo.Caption = "Name: " & udtItems(7).itemName & vbCrLf & "Cost: $" & udtItems(7).itemCost & vbCrLf & "Quantity: " & udtItems(7).itemQuantity
-ElseIf intCategory = 2 Then
-    lblInfo.Caption = "Name: " & udtItems(4).itemName & vbCrLf & "Cost: $" & udtItems(4).itemCost & vbCrLf & "Quantity: " & udtItems(4).itemQuantity
-ElseIf intCategory = 3 Then
-    lblInfo.Caption = "Name: " & udtItems(7).itemName & vbCrLf & "Cost: $" & udtItems(7).itemCost & vbCrLf & "Quantity: " & udtItems(7).itemQuantity
-ElseIf intCategory = 4 Then
-    lblInfo.Caption = "Name: " & udtItems(10).itemName & vbCrLf & "Cost: $" & udtItems(10).itemCost & vbCrLf & "Quantity: " & udtItems(10).itemQuantity
-ElseIf intCategory = 5 Then
-    lblInfo.Caption = "Name: " & udtItems(13).itemName & vbCrLf & "Cost: $" & udtItems(13).itemCost & vbCrLf & "Quantity: " & udtItems(13).itemQuantity
-End If
-End Sub
-Private Sub imgTRT_Click()
-Dim intIndex As Integer
-If intCategory = 1 Then
-    lblInfo.Caption = "Name: " & udtItems(8).itemName & vbCrLf & "Cost: $" & udtItems(8).itemCost & vbCrLf & "Quantity: " & udtItems(8).itemQuantity
-ElseIf intCategory = 2 Then
-    lblInfo.Caption = "Name: " & udtItems(5).itemName & vbCrLf & "Cost: $" & udtItems(5).itemCost & vbCrLf & "Quantity: " & udtItems(5).itemQuantity
-ElseIf intCategory = 3 Then
-    lblInfo.Caption = "Name: " & udtItems(8).itemName & vbCrLf & "Cost: $" & udtItems(8).itemCost & vbCrLf & "Quantity: " & udtItems(8).itemQuantity
-ElseIf intCategory = 4 Then
-    lblInfo.Caption = "Name: " & udtItems(11).itemName & vbCrLf & "Cost: $" & udtItems(11).itemCost & vbCrLf & "Quantity: " & udtItems(11).itemQuantity
-ElseIf intCategory = 5 Then
-    lblInfo.Caption = "Name: " & udtItems(14).itemName & vbCrLf & "Cost: $" & udtItems(14).itemCost & vbCrLf & "Quantity: " & udtItems(14).itemQuantity
-End If
-End Sub
-Sub itemCheckout()
-Dim dblCost As Double
+Sub AddToCart()
 Dim dblTotalCost As Double
 Static intCounter As Integer
 Const dblTax As Double = 0.08375
-lstList.AddItem udtItems(intIndex).itemName
-udtItems(intIndex).itemQuantity = udtItems(intIndex).itemQuantity - 1
-dblCost = (dblCost + udtItems(intIndex).itemCost) * dblTax
-intCounter = intCounter + 1
-lblCounter.Caption = "Customer Number: " & intCounter
-dblTotalCost = dblCost + udtItems(intIndex).itemCost
-MsgBox "Sales Tax: " & dblTax & vbCrLf & "Total Cost: " & dblTotalCost, , "Receipt"
-End Sub
-Private Sub cmdCategory_Click(Index As Integer)
-Index = (Index * intCategory) + 1
-'lblInfo.Caption = "Name: " & udtItems(Index).itemName & vbCrLf & "Cost: $" & udtItems(Index).itemCost & vbCrLf & "Quantity: " & udtItems(Index).itemQuantity
-
-MsgBox Index
-'MsgBox udtItems(Index).itemName
+Dim intQuantity As Integer
+Dim strTemp As String
+intQuantity = udtItems(intIndex).itemQuantity
+strTemp = MsgBox("Add To Cart?", vbYesNo, "Cart")
+If strTemp = vbYes Then
+    If intQuantity >= 1 Then
+    udtItems(intIndex).itemQuantity = udtItems(intIndex).itemQuantity - 1
+    lstList.AddItem udtItems(intIndex).itemName
+    dblCost = dblCost + udtItems(intIndex).itemCost
+    ElseIf intQuantity >= 0 Then
+        MsgBox "Out of stock", , "Stock"
+    End If
+ElseIf strTemp = vbNo Then
+    MsgBox "Canceled", , "Cart"
+End If
+lblInfo.Caption = "Name: " & udtItems(intIndex).itemName & vbCrLf & "Cost: $" & udtItems(intIndex).itemCost & vbCrLf & "Quantity: " & udtItems(intIndex).itemQuantity
 End Sub
 Private Sub mnuCPU_Click(Index As Integer)
-intCategory = 5 'Check category
-Call imgDisplay
+Call imgDisplay(0, 1, 2)
+intItemOne = 0
+intItemTwo = 1
+intItemThree = 2
 End Sub
 Private Sub mnumobo_Click(Index As Integer)
-intCategory = 2
-Call imgDisplay
+Call imgDisplay(3, 4, 5)
+intItemOne = 3
+intItemTwo = 4
+intItemThree = 5
 End Sub
 Private Sub mnupsu_Click(Index As Integer)
-intCategory = 1
-Call imgDisplay
+Call imgDisplay(6, 7, 8)
+intItemOne = 6
+intItemTwo = 7
+intItemThree = 8
 End Sub
 Private Sub mnuHDD_Click(Index As Integer)
-intCategory = 3
-Call imgDisplay
+Call imgDisplay(9, 10, 11)
+intItemOne = 9
+intItemTwo = 10
+intItemThree = 11
 End Sub
 Private Sub mnuRAM_Click(Index As Integer)
-intCategory = 4
-Call imgDisplay
+Call imgDisplay(12, 13, 14)
+intItemOne = 12
+intItemTwo = 13
+intItemThree = 14
 End Sub
 
+Private Sub optOne_Click()
+lblInfo.Caption = "Name: " & udtItems(intItemOne).itemName & vbCrLf & "Cost: $" & udtItems(intItemOne).itemCost & vbCrLf & "Quantity: " & udtItems(intItemOne).itemQuantity
+intIndex = intItemOne
+End Sub
+
+Private Sub optThree_Click()
+lblInfo.Caption = "Name: " & udtItems(intItemThree).itemName & vbCrLf & "Cost: $" & udtItems(intItemThree).itemCost & vbCrLf & "Quantity: " & udtItems(intItemThree).itemQuantity
+intIndex = intItemThree
+End Sub
+
+Private Sub optTwo_Click()
+lblInfo.Caption = "Name: " & udtItems(intItemTwo).itemName & vbCrLf & "Cost: $" & udtItems(intItemTwo).itemCost & vbCrLf & "Quantity: " & udtItems(intItemTwo).itemQuantity
+intIndex = intItemTwo
+End Sub
