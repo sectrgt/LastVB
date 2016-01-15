@@ -1,4 +1,7 @@
-Add in comkmand buttonas to put info in infobox 
-Info box also cantains description
-Recipt (add in the variables to pass index to the command button adding to cart then to sub)*
-Fix indexes to correspond with categories(Menu buttons, imgDisplay, img CLick events, udtItems array)-J
+Add in menu buttons ***
+Info box also cantains description***
+Recipt (add in the variables to pass index to the command button adding to cart then to sub) Done
+Fix indexes to correspond with categories(Menu buttons, imgDisplay, img CLick events, udtItems array)-Done
+Add in comkmand buttonas to put info in infobox Done
+
+Fixed categories, add to cart, and receipt. To Do: Add in menu buttons and descriptions
